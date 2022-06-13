@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Discipline_codesController;
+use App\Models\Discipline_code;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'home');
+
+Route::view('/projects', 'projects');
+
+// 
+Route::post('/discipline_code', function () {
+    return Discipline_code::create([
+        'code' => 12,
+        'description' => 'Anhydriet'
+    ]);
+});
+
+Route::get('/discipline_code', function () {
+    return Discipline_code::all();
 });
