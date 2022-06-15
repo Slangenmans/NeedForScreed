@@ -6,14 +6,25 @@
 
         <title>Screed - TEMPLATE TITLE</title>
 
-        <link rel="stylesheet" href="{{ asset('app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         
     </head>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/projects">Add Project</a>
-    </nav>
     <body>
-        @yield ('content')
+        <nav>
+            <a href="/">Home</a>
+            <a href="/projects">Project</a>
+        </nav>
+        {{-- Logo and username --}}
+        <div class="top-content">
+            <img src="imgs/logo.jpg" alt="Logo van Wouters Totaal Afbouw BV">
+            <p class="text-welcome">Slotje Strontrammel!</p>
+        </div>
+        {{-- Page contents --}}
+        <div class="content">
+            <div class="content-header">
+                @yield ('header')
+            </div>
+                @yield ('content')
+        </div>
     </body>
 </html>

@@ -1,0 +1,18 @@
+*, *::before, *::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Arial";
+  }
+  
+  .top-content {
+    display: flex;
+    justify-content: space-around;
+    border: 1px grey solid;
+  }
+  
+  .main-content  {
+    border: 1px black solid;
+    margin: 2rem;
+  }
+  

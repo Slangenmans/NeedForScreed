@@ -11,7 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
+ mix.webpackConfig({
+    devServer: {
+        host: '0.0.0.0',
+        port: 8080
+    }
+ })
+
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/css/app.scss', 'public/css')
+    .version();

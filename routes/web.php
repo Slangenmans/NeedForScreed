@@ -17,9 +17,14 @@ use App\Models\Discipline_code;
 
 Route::view('/', 'home');
 
-Route::view('/projects', 'projects');
+Route::view('projects', 'projects');
 
-// 
+Route::view('test_project', 'test_project');
+
+Route::view('create_project', 'create_project');
+
+
+// Attempt to get data in database
 Route::post('/discipline_code', function () {
     return Discipline_code::create([
         'code' => 12,

@@ -1,0 +1,30 @@
+*, *::before, *::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Arial";
+}
+
+/* Top section: Page title and buttons */
+.top-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px grey solid;
+}
+
+button {
+  padding: 20px;
+}
+
+/* Main content */
+.content {
+  border: 1px black solid;
+  margin: 2rem;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
