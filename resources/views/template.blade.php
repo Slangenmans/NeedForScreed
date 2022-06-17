@@ -12,7 +12,8 @@
     <body>
         <nav>
             <a href="/">Home</a>
-            <a href="/projects">Project</a>
+            <a href="/project_test">Project</a>
+            <a href="{{ route ('projects.index') }}">Projects DB Test</a>
         </nav>
         {{-- Logo and username --}}
         <div class="top-content">

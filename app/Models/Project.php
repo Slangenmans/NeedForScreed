@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'segments' => 'array',
-    ];
+    // protected $casts = [
+    //     'segments' => 'array',
+    // ];
 }

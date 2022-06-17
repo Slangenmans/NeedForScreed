@@ -18,11 +18,11 @@ return new class extends Migration
             // foreignId: establishes relationship with disc. codes table
             $table->id();
             $table->decimal('project_code', 6, 0, true);
-            $table->foreignId('discipline_code')->constrained('discipline_codes');
+            // $table->foreignId('discipline_code')->constrained('discipline_codes');
             $table->string('name');
             $table->string('address')->nullable();
-            $table->string('planner');
-            $table->json('segments');
+            // $table->string('planner');
+            // $table->json('segments');
             $table->timestamps();
         });
     }

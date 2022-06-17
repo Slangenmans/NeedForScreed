@@ -3,12 +3,15 @@
 
 @section('header')
         <h3>Projects</h3>
-        <a href="/"><input type="button" name="confirm_project" id="confirm_project" value="Confirm"></a>
+        <a href="/index"><input type="button" name="confirm_project" id="confirm_project" value="Confirm"></a>
 @endsection
 
 @section('content')
     <h1>Create a project</h1>
-    <form action="/">
+
+    {{-- Form  --}}
+    <form method="POST" action="{{ route('projects.store') }}">
+        @csrf
         <div>
             <label for="project_code">Project code</label><br>
             <input type="text" id="project_code" name="project_code"><br>
