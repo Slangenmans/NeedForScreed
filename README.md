@@ -1,7 +1,7 @@
 # DekvloerenBewaking
  
 ## Summary
-Webapplication used to keep track of finances regarding screed projects.
+Webapplication developed in Laravel used to keep track of finances regarding screed projects.
 
 ## Features
 - Login systeem
