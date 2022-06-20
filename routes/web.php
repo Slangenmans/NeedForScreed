@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Discipline_codesController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
 use App\Models\Discipline_code;
 use phpDocumentor\Reflection\Types\Resource_;
 
@@ -17,27 +19,45 @@ use phpDocumentor\Reflection\Types\Resource_;
 |
 */
 
-Route::view('/', 'home');
+Route::view('/', 'home')->name('home');
 
-Route::view('project_test', 'project_test');
+Route::middleware(['guest'])
+    ->group(function () {
+        // Register routes. Middleware will prevent logged in users from visiting register page
+        Route::get('register', [RegisterController::class, 'create'])->name('register.create');
+        Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+        // Login
+        Route::get('login', [SessionsController::class, 'create'])->name('loginForm');
+        Route::post('login', [SessionsController::class, 'store'])->name('login');
+    });
 
-Route::view('project_parse', 'project_parse');
 
-Route::view('create_project', 'create_project');
+Route::middleware(['auth'])
+    ->group(function () {
 
-// Resource method handles URL routing and naming.
-// First param tells method to grab from projects dir. The second parameter will name according to action method (show, index, etc.)
-Route::resource('projects', ProjectsController::class);
+        Route::view('project_test', 'project_test');
+
+        Route::view('project_parse', 'project_parse');
+
+        Route::view('create_project', 'create_project');
+
+        // Logout routes
+        Route::post('logout', [SessionsController::class, 'destroy'])->name('logout');
 
 
-// Attempt to get data in database
-Route::post('/discipline_code', function () {
-    return Discipline_code::create([
-        'code' => 12,
-        'description' => 'Anhydriet'
-    ]);
-});
+        // Resource method handles URL routing and naming.
+        // First param tells method to grab from projects dir. The second parameter will name according to action method (show, index, etc.)
+        Route::resource('projects', ProjectsController::class);
 
-Route::get('/discipline_code', function () {
-    return Discipline_code::all();
-});
+        // Attempt to get data in database
+        Route::post('/discipline_code', function () {
+            return Discipline_code::create([
+                'code' => 12,
+                'description' => 'Anhydriet'
+            ]);
+        });
+
+        Route::get('/discipline_code', function () {
+            return Discipline_code::all();
+        });
+    });
