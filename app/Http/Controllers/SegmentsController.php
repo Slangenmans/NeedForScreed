@@ -25,6 +25,7 @@ class SegmentsController extends Controller
      */
     public function create()
     {
+        // GET. Solely responsible for returning the create view
         return view('segments.create');
     }
 
@@ -36,7 +37,28 @@ class SegmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // POST
+        // Instantiate object
+        $segment = new Segment();
+
+        // Assign form input names to database collumns using the 
+        $segment->project_code = $request->input('project_code');
+        $segment->segment = $request->input('segment');
+        $segment->description = $request->input('description');
+        $segment->isIsolation = $request->input('isIsolation');
+        $segment->thicknessIsolation = $request->input('thicknessIsolation');
+        $segment->isDoneIsolation = $request->input('isDoneIsolation');
+        $segment->isFloor = $request->input('isFloor');
+        $segment->thicknessFloor = $request->input('thicknessFloor');
+        $segment->isDoneFloor = $request->input('isDoneFloor');
+        $segment->square_meters = $request->input('square_meters');
+        $segment->price_per_unit = $request->input('price_per_unit');
+        $segment->price_per_segment = $request->input('price_per_segment');
+
+
+        $segment->save();
+
+        return redirect()->route('segment.index');
     }
 
     /**

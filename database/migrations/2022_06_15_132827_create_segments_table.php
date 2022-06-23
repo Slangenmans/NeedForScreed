@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('segments', function (Blueprint $table) {
             $table->id();
+            $table->decimal('project_code', 6, 0, true);
             $table->string('description');
             $table->boolean('isIsolation');
             $table->integer('thicknessIsolation');

@@ -14,15 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            // decimal: specifies format (6 digits, no decimals)
-            // foreignId: establishes relationship with disc. codes table
             $table->id();
             $table->decimal('project_code', 6, 0, true);
-            // $table->foreignId('discipline_code')->constrained('discipline_codes');
             $table->string('name');
             $table->string('address')->nullable();
-            // $table->string('planner');
-            // $table->json('segments');
+            $table->decimal('revenue', 8, 2)->nullable();
+            $table->decimal('costs', 8, 2)->nullable();
+            $table->decimal('pNr_euro', 8, 2)->nullable();
+            $table->decimal('pNr_percentage', 5, 2)->nullable();
             $table->timestamps();
         });
     }

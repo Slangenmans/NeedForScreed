@@ -11,9 +11,6 @@ class ProjectsController extends Controller
     {
         // GET. Returns view called index. 
         return view('projects.index', [
-            // Static data previously assigned to variable 'projects'
-            // 'projects' => self::getData()
-
             // Reads data from database and assigns to projects variable
             'projects' => Project::all()
         ]);

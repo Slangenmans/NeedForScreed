@@ -12,9 +12,7 @@
     <body>
         <nav>
             <a href="/">Home</a>
-            <a href="/project_test">Project</a>
-            <a href="{{ route ('projects.index') }}">Projects DB Test</a>
-            <a href="{{ route ('segments.index') }}">Segments</a>
+            <a href="{{ route ('projects.index') }}">Projects</a>
         </nav>
         {{--  --}}
         @if (session()->has('succes'))

@@ -30,38 +30,24 @@ Route::middleware(['guest'])
         // Login
         Route::get('login', [SessionsController::class, 'create'])->name('loginForm');
         Route::post('login', [SessionsController::class, 'store'])->name('login');
+        // Segments [NOT FUNCTIONAL]
+        Route::get('segments', [SessionsController::class, 'create'])->name('segmentsForm');
+        Route::post('segments', [SessionsController::class, 'store'])->name('segments');
     });
 
 
 Route::middleware(['auth'])
     ->group(function () {
-
-        Route::view('project_test', 'project_test');
-
-        Route::view('project_parse', 'project_parse');
-
-        Route::view('create_project', 'create_project');
-
         // Logout routes
         Route::post('logout', [SessionsController::class, 'destroy'])->name('logout');
-
 
         // Resource method handles URL routing and naming.
         // First param tells method to grab from projects dir. The second parameter will name according to action method (show, index, etc.)
         Route::resource('projects', ProjectsController::class);
-
         Route::resource('segments', SegmentsController::class);
-
-
-        // Attempt to get data in database
-        Route::post('/discipline_code', function () {
-            return Discipline_code::create([
-                'code' => 12,
-                'description' => 'Anhydriet'
-            ]);
-        });
-
-        Route::get('/discipline_code', function () {
-            return Discipline_code::all();
-        });
     });
+
+// Misc. routing
+Route::view('project_test', 'project_test');
+Route::view('project_parse', 'project_parse');
+Route::view('create_project', 'create_project');

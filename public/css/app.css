@@ -47,6 +47,10 @@ button {
   gap: 1rem;
 }
 
+/* .project_title, .project_details {
+  display: flex
+} */
+
 .register-succesful {
   position: fixed;
   bottom: 0;

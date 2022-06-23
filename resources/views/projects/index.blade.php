@@ -5,8 +5,6 @@
         <a href="{{ route('projects.create') }}"><input type="button" class="button" name="add_project" id="add_project" value="Add Project"></a>
 @endsection
 @section('content')
-    <p>Who's ready to create some data?</p>
-
     @if (count($projects) > 0)
     <div>
         @foreach ($projects as $project)
@@ -15,14 +13,28 @@
             <h3>
                 <a href="{{ route('projects.show', ['project' => $project['id']])}}">{{$project['project_code']}}</a>
             </h3>
-            <ul>
-                <li>
-                    {{ $project['name'] }}
-                </li>
-                <li>
-                    {{ $project['address'] }}
-                </li>
-            </ul>
+            <div class="project_details">
+                <ul>
+                    <li>
+                        <p><b>Project name:</b> {{ $project['name'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Project address:</b> {{ $project['address'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Revenue:</b> €{{ $project['revenue'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Costs:</b> €{{ $project['costs'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Profit & risk (€):</b> {{ $project['pNr_euro'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Profit & risk (%):</b> %{{ $project['pNr_percentage'] }}</p>
+                    </li>  
+                </ul>
+            </div>
         </div>
             
         @endforeach
