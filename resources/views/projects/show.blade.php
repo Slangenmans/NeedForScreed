@@ -2,7 +2,7 @@
 
 @section('header')
         <h3>Projects Database Test Page</h3>
-        <a href="/create_project"><input type="button" class="button" name="add_project" id="add_project" value="Add Project"></a>
+        <a href="{{ route('segments.create') }}"><input type="button" class="button" name="add_project" id="add_project" value="Add Segments"></a>
 @endsection
 @section('content')
     <p>Who's ready to create some data?</p>
@@ -12,10 +12,10 @@
             </h3>
             <ul>
                 <li>
-                    {{ $project['name'] }}
+                    <p><b>Project name:</b> {{ $project['name'] }}</p>
                 </li>
                 <li>
-                    {{ $project['address'] }}
+                    <p><b>Project address:</b> {{ $project['address'] }}</p>
                 </li>
             </ul>
         </div>

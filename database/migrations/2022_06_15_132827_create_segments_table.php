@@ -16,9 +16,16 @@ return new class extends Migration
         Schema::create('segments', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->string('location');
+            $table->boolean('isIsolation');
+            $table->integer('thicknessIsolation');
+            $table->integer('isDoneIsolation');
+            $table->boolean('isFloor');
+            $table->integer('thicknessFloor');
+            $table->integer('isDoneFloor');
+            $table->string('segment');
             $table->float('square_meters');
-            $table->float('kubic_meters');
+            $table->float('price_per_unit');
+            $table->float('price_per_segment');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Discipline_codesController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SegmentsController;
 use App\Models\Discipline_code;
 use phpDocumentor\Reflection\Types\Resource_;
 
@@ -48,6 +49,9 @@ Route::middleware(['auth'])
         // Resource method handles URL routing and naming.
         // First param tells method to grab from projects dir. The second parameter will name according to action method (show, index, etc.)
         Route::resource('projects', ProjectsController::class);
+
+        Route::resource('segments', SegmentsController::class);
+
 
         // Attempt to get data in database
         Route::post('/discipline_code', function () {

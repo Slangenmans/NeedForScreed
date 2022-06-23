@@ -14,6 +14,7 @@
             <a href="/">Home</a>
             <a href="/project_test">Project</a>
             <a href="{{ route ('projects.index') }}">Projects DB Test</a>
+            <a href="{{ route ('segments.index') }}">Segments</a>
         </nav>
         {{--  --}}
         @if (session()->has('succes'))
