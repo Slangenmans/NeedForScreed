@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('segments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('project_code', 6, 0, true);
+            $table->foreignId('project_id')->constrained('projects');
+            $table->string('segment');
             $table->string('description');
             $table->boolean('isIsolation');
             $table->integer('thicknessIsolation');
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->boolean('isFloor');
             $table->integer('thicknessFloor');
             $table->integer('isDoneFloor');
-            $table->string('segment');
             $table->float('square_meters');
             $table->float('price_per_unit');
             $table->float('price_per_segment');

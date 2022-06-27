@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Segment;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class SegmentsController extends Controller
 {
@@ -37,28 +40,68 @@ class SegmentsController extends Controller
      */
     public function store(Request $request)
     {
-        // POST
-        // Instantiate object
-        $segment = new Segment();
+        // Stap 0: file uploaden.
+        $file = $_FILES['import_file'];
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $project_code = $request->project_code;
+        $project = Project::firstWhere('project_code', $project_code);
+        $file_name_new = '\\' . $project_code . '_' . $file_name;
+        $target_directory = public_path('docs') . $file_name_new;
 
-        // Assign form input names to database collumns using the 
-        $segment->project_code = $request->input('project_code');
-        $segment->segment = $request->input('segment');
-        $segment->description = $request->input('description');
-        $segment->isIsolation = $request->input('isIsolation');
-        $segment->thicknessIsolation = $request->input('thicknessIsolation');
-        $segment->isDoneIsolation = $request->input('isDoneIsolation');
-        $segment->isFloor = $request->input('isFloor');
-        $segment->thicknessFloor = $request->input('thicknessFloor');
-        $segment->isDoneFloor = $request->input('isDoneFloor');
-        $segment->square_meters = $request->input('square_meters');
-        $segment->price_per_unit = $request->input('price_per_unit');
-        $segment->price_per_segment = $request->input('price_per_segment');
+        move_uploaded_file($file_tmp, $target_directory);
 
+        // Stap 1: XLS uitlezen, array maken met data.
+        # Create a new Xls Reader
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 
-        $segment->save();
+        // Tell the reader to only read the data. Ignore formatting etc.
+        $reader->setReadDataOnly(true);
 
-        return redirect()->route('segment.index');
+        // Read the spreadsheet file.
+        $spreadsheet = $reader->load($target_directory);
+
+        $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
+        $contents = $sheet->toArray();
+        $num_of_segments = count($contents);
+
+        // Stap 2: Foreach loop waarbij je voor iedere rij uit de xls een nieuw segment aan maakt
+        foreach ($contents as $row) {
+            // Stap 3: Voor ieder segment (in de loop) de juiste data toewijzen aan bijbehorende velden
+            $segment_description = $row[0];
+            $job_description = $row[1];
+            $isIsolation = boolval($row[2]);
+            $thicknessIsolation = floatval($row[3]);
+            $isDoneIsolation = boolval($row[4]);
+            $isFloor = boolval($row[5]);
+            $thicknessFloor = floatval($row[6]);
+            $isDoneFloor = boolval($row[7]);
+            $quantity = floatval($row[8]);
+            $price_per_unit = floatval($row[9]);
+
+            $project->segments()->create([
+                'segment' => $segment_description,
+                'description' => $job_description,
+                'isIsolation' => $isIsolation,
+                'thicknessIsolation' => $thicknessIsolation,
+                'isDoneIsolation' => $isDoneIsolation,
+                'isFloor' => $isFloor,
+                'thicknessFloor' => $thicknessFloor,
+                'isDoneFloor' => $isDoneFloor,
+                'square_meters' => $quantity,
+                'price_per_unit' => $price_per_unit,
+                'price_per_segment' => $quantity * $price_per_unit,
+            ]);
+        }
+
+        // Trigger save so totals are (re)calculated.
+        $project->save();
+
+        // Stap 6: Melding tonen over hoeveel segmenten zijn gemaakt/toegevoegd zijn aan project
+        session()->flash('success', $num_of_segments . 'segments succesfully added!');
+
+        // Stap 7: Redirect naar index pagina oid.
+        return redirect('projects');
     }
 
     /**
@@ -67,9 +110,9 @@ class SegmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Segment $project_code)
     {
-        //
+        // 
     }
 
     /**

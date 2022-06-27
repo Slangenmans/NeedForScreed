@@ -7,27 +7,27 @@
 <h1>Create segments</h1>
 
     {{-- Form  --}}
-    <form method="POST" action="{{ route('segments.store') }}">
+    <form method="POST" action="{{ route('segments.store') }}" enctype="multipart/form-data">
         @csrf
         <div>
-            <label for="project_code">Project code</label><br>
+            <label for="project_code">Project code: </label>
             <select name="project_code" id="project_code">
+            
             <?php
                 // Database details, 
                 define('DB_SERVER', 'localhost');
                 define('DB_USERNAME', 'root');
                 define('DB_PASSWORD', '');
                 define('DB_NAME', 'screed_projects');
-
+                
+                // Open a new connection to the MySQL server
+                // Method returns an object which represents the connection to a MySQL Server, or false on failure
                 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
                 
                 // checking connection database
                 if($link === false){
                     die("Error, could not do thingamajic" . mysqli_connect_error);
                 }
-                
-                // if(isset($_GET['project_code'])){
-                //     $project_code = _GET['project_code'];
                 
                 // Store MySQL syntax in variable
                 $sql = "SELECT * FROM projects";
@@ -40,9 +40,13 @@
                         }
                     }
                 }
-
+                
             ?>
-            </select>
+            </select><br>
+        </div>
+        <div>
+            <label for="import_file">Import file:</label>
+            <input type="file" name="import_file" id="import_file" class="import_file">
         </div>
         <div>
             <input type="submit" value="Submit">

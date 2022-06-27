@@ -12,7 +12,7 @@ class ProjectsController extends Controller
         // GET. Returns view called index. 
         return view('projects.index', [
             // Reads data from database and assigns to projects variable
-            'projects' => Project::all()
+            'projects' => Project::all(),
         ]);
     }
 
@@ -24,7 +24,7 @@ class ProjectsController extends Controller
     public function create()
     {
         // GET. Solely responsible for returning the create view
-        return view('.projects.create');
+        return view('projects.create');
     }
 
     /**
@@ -37,14 +37,11 @@ class ProjectsController extends Controller
     {
         // POST
         // Instantiate object
-        $project = new Project();
-
-        // Assign form input names to database collumns using the 
-        $project->project_code = $request->input('project_code');
-        $project->name = $request->input('name');
-        $project->address = $request->input('address');
-
-        $project->save();
+        $project = Project::create([
+            'project_code' => $request->input('project_code'),
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+        ])->save();
 
         return redirect()->route('projects.index');
     }

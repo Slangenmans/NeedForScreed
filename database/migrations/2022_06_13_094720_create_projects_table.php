@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->decimal('project_code', 6, 0, true);
+            $table->decimal('project_code', 6, 0, true)->unique();
             $table->string('name');
             $table->string('address')->nullable();
             $table->decimal('revenue', 8, 2)->nullable();

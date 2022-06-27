@@ -30,9 +30,6 @@ Route::middleware(['guest'])
         // Login
         Route::get('login', [SessionsController::class, 'create'])->name('loginForm');
         Route::post('login', [SessionsController::class, 'store'])->name('login');
-        // Segments [NOT FUNCTIONAL]
-        Route::get('segments', [SessionsController::class, 'create'])->name('segmentsForm');
-        Route::post('segments', [SessionsController::class, 'store'])->name('segments');
     });
 
 

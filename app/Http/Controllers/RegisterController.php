@@ -28,7 +28,7 @@ class RegisterController extends Controller
         $user->save();
 
         // Displays alert that user has been registered
-        session()->flash('succes', 'Your account has been created.');
+        session()->flash('success', 'Your account has been created.');
 
         // Log the user in 
         auth()->login($user);
