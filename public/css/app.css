@@ -6,11 +6,31 @@
 }
 
 /* Top section: Page title and buttons */
+nav {
+  margin: 1rem;
+}
+
+nav > a, a:visited{
+  color: black;
+  text-decoration: none;
+}
+
+nav > a, a:hover{
+  color: grey;
+  text-decoration: none;
+}
+
 .top-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px grey solid;
+}
+
+.branding {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .top-user {
@@ -24,13 +44,16 @@
 }
 
 button {
-  padding: 20px;
+  padding: 10px;
 }
 
 /* Main content */
 .content {
-  border: 1px black solid;
   margin: 2rem;
+}
+
+.content > a {
+
 }
 
 .content-header {
@@ -58,5 +81,5 @@ button {
   margin: 2.5rem;
   color: white;
   background-color: blue;
-
 }
+

@@ -2,12 +2,12 @@
 @extends('template')
 
 @section('header')
-        <h3>Projects</h3>
+        <h3></h3>
         <a href="/index"><input type="button" name="confirm_project" id="confirm_project" value="Confirm"></a>
 @endsection
 
 @section('content')
-    <h1>Create a project</h1>
+    <h1>Create a project</h1><br>
 
     {{-- Form  --}}
     <form method="POST" action="{{ route('projects.store') }}">

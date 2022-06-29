@@ -1,5 +1,9 @@
 @extends('template')
 
+@section('title')
+    Projects
+@endsection
+
 @section('header')
         <h3>Projects Database Test Page</h3>
         <a href="{{ route('projects.create') }}"><input type="button" class="button" name="add_project" id="add_project" value="Add Project"></a>
@@ -9,7 +13,7 @@
     <div>
         @foreach ($projects as $project)
 
-        <div>
+        <div class="projects-overview">
             <h3>
                 <a href="{{ route('projects.show', ['project' => $project['id']])}}">{{$project['project_code']}}</a>
             </h3>

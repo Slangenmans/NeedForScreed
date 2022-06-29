@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Screed - TEMPLATE TITLE</title>
+        <title>Need for Screed - @yield('title')</title>
 
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         
     </head>
     <body>
         <nav>
-            <a href="/">Home</a>
-            <a href="{{ route ('projects.index') }}">Projects</a>
+            <a href="/"><b>Home</b></a>
+            <a href="{{ route ('projects.index') }}"><b>Projects</b></a>
         </nav>
         {{--  --}}
         @if (session()->has('succes'))
@@ -33,7 +33,10 @@
 
         {{-- Logo and username --}}
         <div class="top-content">
-            <img src="imgs/logo.jpg" alt="Logo van Wouters Totaal Afbouw BV">
+            <div class="branding">
+                <img src="imgs/screed.jpg" alt="Clipart depiction of Mr. Screed">
+                <h1>Need for Screed</h1>
+            </div>
             <div class="top-user">
                 {{-- Display username, or login and register links --}}
                 @guest

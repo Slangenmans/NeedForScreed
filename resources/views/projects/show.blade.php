@@ -1,7 +1,11 @@
 @extends('template')
 
+@section('title')
+    {{ $project['name'] }}
+@endsection
+
 @section('header')
-        <h3>Projects Database Test Page</h3>
+        <h3></h3>
         <a href="{{ route('segments.create') }}"><input type="button" class="button" name="add_project" id="add_project" value="Add Segments"></a>
 @endsection
 @section('content')
