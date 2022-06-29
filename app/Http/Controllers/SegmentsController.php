@@ -63,6 +63,8 @@ class SegmentsController extends Controller
 
         $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
         $contents = $sheet->toArray();
+        // First item removed, contains collumn header text
+        array_shift($contents);
         $num_of_segments = count($contents);
 
         // Stap 2: Foreach loop waarbij je voor iedere rij uit de xls een nieuw segment aan maakt
