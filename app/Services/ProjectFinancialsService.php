@@ -15,7 +15,6 @@ class ProjectFinancialsService
         $segments = $project->segments;
 
         $revenue = 0;
-        $costs = 0;
 
         foreach ($segments as $segment) {
             if ($segment->isFloor) {
@@ -27,7 +26,6 @@ class ProjectFinancialsService
 
         $project->fill([
             'revenue' => $revenue,
-            'costs' => $costs,
         ]);
 
         // dd(

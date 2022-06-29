@@ -31,7 +31,7 @@
                         <p><b>Profit & risk (€):</b> {{ $project['pNr_euro'] }}</p>
                     </li>
                     <li>
-                        <p><b>Profit & risk (%):</b> %{{ $project['pNr_percentage'] }}</p>
+                        <p><b>Profit & risk (%):</b> {{ $project['pNr_percentage'] }}%</p>
                     </li>  
                 </ul>
             </div>

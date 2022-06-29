@@ -9,28 +9,34 @@
         <h3 class="project_title">
             {{$project['project_code']}}
         </h3>
-        <div class="project_details">
-            <ul>
-                <li>
-                    <p><b>Project name:</b> {{ $project['name'] }}</p>
-                </li>
-                <li>
-                    <p><b>Project address:</b> {{ $project['address'] }}</p>
-                </li>
-                <li>
-                    <p><b>Revenue:</b> €{{ $project['revenue'] }}</p>
-                </li>
-                <li>
-                    <p><b>Costs:</b> €{{ $project['costs'] }}</p>
-                </li>
-                <li>
-                    <p><b>Profit & risk (€):</b> €{{ $project['pNr_euro'] }}</p>
-                </li>
-                <li>
-                    <p><b>Profit & risk (%):</b> {{ $project['pNr_percentage'] }}</p>
-                </li>
-            </ul>
-        </div>
+            <div class="project_details">
+                <ul>
+                    <li>
+                        <p><b>Project name:</b> {{ $project['name'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Project address:</b> {{ $project['address'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Revenue:</b> €{{ $project['revenue'] }}</p>
+                    </li>
+                    <form name="project-form" method="POST" action="{{ route('projects.update', $project['id']) }}">
+                        @method('PUT')
+                        @csrf
+                        <li>
+                            <p><b>Costs:</b> <input type="number" name="costs" step="0.01" value="{{ $project['costs'] }}">
+                                <input type="submit" class="costs-button" name="costs-button" value="Update costs">
+                            </p>
+                        </li>
+                    </form>
+                    <li>
+                        <p><b>Profit & risk (€):</b> €{{ $project['pNr_euro'] }}</p>
+                    </li>
+                    <li>
+                        <p><b>Profit & risk (%):</b> {{ $project['pNr_percentage'] }}%</p>
+                    </li>
+                </ul>
+            </div>
     </div>
 
 @endsection

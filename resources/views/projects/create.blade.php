@@ -11,6 +11,7 @@
 
     {{-- Form  --}}
     <form method="POST" action="{{ route('projects.store') }}">
+        @method('PUT')
         @csrf
         <div>
             <label for="project_code">Project code</label><br>

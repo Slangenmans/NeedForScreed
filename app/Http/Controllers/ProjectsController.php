@@ -77,9 +77,18 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $project)
     {
         // POST
+        $id = Project::find($project);
+
+        $id->costs = $request->input('costs');
+        $id->pNr_euro = $id->revenue - $id->costs;
+        $id->pNr_percentage = $id->pNr_euro / $id->revenue * 100;
+
+        $id->save();
+
+        return redirect()->route('projects.index');
     }
 
     /**
