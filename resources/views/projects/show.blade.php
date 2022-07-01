@@ -39,8 +39,45 @@
                     <li>
                         <p><b>Profit & risk (%):</b> {{ $project['pNr_percentage'] }}%</p>
                     </li>
-                </ul>
+                </ul><br>
             </div>
+    </div>
+    <div class="show-segments">
+        <?PHP
+            use App\Models\Segment;
+            use Illuminate\Support\Facades\DB;
+            // Send query to database to collect all segments and store them in variable
+            $segments = DB::table('segments')->where('project_id', $project->id)->get();
+            // echo $segments;
+            // dd($segments);
+                     
+            
+            // If segments for this project does not equal zero
+            if($segments->count() >0){
+                echo '<table>
+                    <tr>
+                        <th>Segment</th>
+                        <th>Description</th>
+                        <th>Square Meters</th>
+                        <th>Price per Unit</th>
+                        <th>Price per Segment</th>
+                    </tr>';
+            foreach ($segments as $segment) {
+                echo "<tr>
+                    <td>{$segment->segment}</td>
+                    <td>{$segment->description}</td>
+                    <td>{$segment->square_meters}</td>
+                    <td>{$segment->price_per_unit}</td>
+                    <td>{$segment->price_per_segment}</td>
+                    </tr>";
+            }
+            echo '</table>';
+            }
+            else {
+                echo '<i>This projects contains no imported segments.</i>';
+            };
+            // Else, display "There are no segments added to this project yet." 
+        ?>
     </div>
 
 @endsection

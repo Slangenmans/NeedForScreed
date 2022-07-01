@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: "Arial";
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /* Top section: Page title and buttons */
@@ -52,14 +52,41 @@ button {
   margin: 2rem;
 }
 
-.content > a {
+table {
+  font-family: arial, sans-serif;
+  border-collapse: separate;
+  width: 100%;
+  border:solid black 1px;
+  border-radius:6px;
+}
 
+td, th {
+  border-left:solid black 1px;
+  border-top:solid black 1px;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  border-top: none;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td:first-child, th:first-child {
+  border-left: none;
 }
 
 .content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.project_details > ul {
+  list-style-type: none;
 }
 
 .register-card, .login-card {
