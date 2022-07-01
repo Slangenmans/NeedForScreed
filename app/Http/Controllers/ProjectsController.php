@@ -41,9 +41,9 @@ class ProjectsController extends Controller
             'project_code' => $request->input('project_code'),
             'name' => $request->input('name'),
             'address' => $request->input('address'),
-            'revenue' => 0,
-            'costs' => 0,
-            'PnR_euro' => 0,
+            'revenue' => 0.00,
+            'costs' => 0.00,
+            'PnR_euro' => 0.00,
         ])->save();
 
         return redirect()->route('projects.index');

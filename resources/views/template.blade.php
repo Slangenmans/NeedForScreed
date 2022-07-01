@@ -36,8 +36,8 @@
         {{-- Logo and username --}}
         <div class="top-content">
             <div class="branding">
-                <img src="imgs/screed.jpg" alt="Clipart depiction of Mr. Screed">
-                <h1>Need for Screed</h1>
+                <a href="{{ route ('projects.index') }}"><img src="{{ asset('imgs/screed.jpg') }}" alt="Clipart depiction of Mr. Screed"></a>
+                <a href="{{ route ('projects.index') }}"><h1>Need for Screed</h1></a>
             </div>
             <div class="top-user">
                 {{-- Display username, or login and register links --}}

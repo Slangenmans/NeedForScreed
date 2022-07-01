@@ -5,12 +5,12 @@
 @endsection
 
 @section('header')
-        <h3>Projects Overview</h3>
+        <h1>Projects Overview</h1>
         <a href="{{ route('projects.create') }}"><input type="button" class="button" name="add_project" id="add_project" value="Add Project"></a>
 @endsection
 @section('content')
     @if (count($projects) > 0)
-    <div>
+    <div><br>
         <table>
             <tr>
                 <th>Project code</th>
@@ -28,7 +28,7 @@
                 <td>{{ $project['address'] }}</td>
                 <td>€{{ $project['revenue'] }}</td>         
                 <td>€{{ $project['costs'] }}</td>
-                <td>{{ $project['pNr_euro'] }}</td> 
+                <td>€{{ $project['pNr_euro'] }}</td> 
                 <td>{{ $project['pNr_percentage'] }}%</td>
             </tr>
         @endforeach

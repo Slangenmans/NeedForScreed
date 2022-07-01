@@ -1,3 +1,7 @@
+:root {
+  --maxWidth: 1200px;
+}
+
 *, *::before, *::after {
   margin: 0px;
   padding: 0px;
@@ -5,9 +9,18 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/* Top section: Page title and buttons */
+/* Top section: Page title, image and buttons */
 nav {
+  max-width: var(--maxWidth);
+  margin-inline: auto;
+  margin-top: 2rem;
+}
+
+nav > a{
+  background: rgb(231, 231, 231);
+  padding: 1rem;
   margin: 1rem;
+  border-radius: 12px;
 }
 
 nav > a, a:visited{
@@ -24,13 +37,24 @@ nav > a, a:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px grey solid;
+  max-width: var(--maxWidth);
+  margin-inline: auto;
+  margin-top: 4rem;
+}
+
+.branding > img {
+  border-radius: 50%;
 }
 
 .branding {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.branding > a, a:hover, a:visited{
+  color: black;
+  text-decoration: none;
 }
 
 .top-user {
@@ -49,7 +73,9 @@ button {
 
 /* Main content */
 .content {
-  margin: 2rem;
+  max-width: var(--maxWidth);
+  margin-inline: auto;
+  margin-block: 2rem;
 }
 
 table {
@@ -58,6 +84,8 @@ table {
   width: 100%;
   border:solid black 1px;
   border-radius:6px;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
 }
 
 td, th {
@@ -106,3 +134,9 @@ td:first-child, th:first-child {
   background-color: blue;
 }
 
+button, .button {
+  background: rgb(231, 231, 231);
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
